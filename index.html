@@ -1,7 +1,7 @@
 <head>
 <link href="tp/css/bootstrap.min.css" rel="stylesheet"/>
 <link href="tp/css/font-awesome.min.css" rel="stylesheet"/>
-
+<link href="css/style.css" rel="stylesheet"/>
 </head>
 <body ng-app="solingApp">
 	<!--[if lt IE 7]>
@@ -11,7 +11,7 @@
 
 <!-- Our Website Content Goes Here -->
 <div ng-include='"templates/header.html"'></div>
-    <div ng-view></div>
+    <div ng-view id="wrap"></div>
 <div ng-include='"templates/footer.html"'></div>
 	
 </body>
@@ -24,3 +24,5 @@
 <script src="tp/js/bootstrap-table.min.js"></script>
 <script src="tp/js/massautocomplete.min.js"></script>
 <script src="js/app.js"></script>
+<link href="tp/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+<script src="tp/js/bootstrap-dialog.min.js"></script>

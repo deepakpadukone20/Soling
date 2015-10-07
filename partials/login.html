@@ -1,0 +1,27 @@
+<script type="text/javascript">
+var modalbody = "";
+BootstrapDialog.show({
+            message: '<div><form class="form-signin"><h2 class="form-signin-heading">Please sign in</h2><label for="inputEmail" class="sr-only">Email address</label><input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""><label for="inputPassword" class="sr-only">Password</label><input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""><div class="checkbox"><label><input type="checkbox" value="remember-me">Remember me</label></div></form></div>',
+            buttons: [{
+                icon: 'glyphicon glyphicon-send',
+                label: 'Login',
+                cssClass: 'btn btn-lg btn-primary btn-block',
+                autospin: true,
+                action: function(dialogRef){
+                    modalbody = dialogRef.getModalBody();
+                    dialogRef.enableButtons(false);
+                    dialogRef.setClosable(false);
+                    dialogRef.getModalBody().html('Dialog closes in 5 seconds.');
+                    setTimeout(function(){
+                        dialogRef.close();
+                    }, 5000);
+                }
+            }, {
+                label: 'Close',
+                cssClass: 'btn btn-lg btn-primary btn-block',
+                action: function(dialogRef){
+                    dialogRef.close();
+                }
+            }]
+        });
+</script>

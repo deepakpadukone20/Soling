@@ -7,6 +7,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
     // Home
     .when("/", {templateUrl: "partials/home.html", controller: "PageCtrl"})
+    .when("/login", {templateUrl: "partials/login.html", controller: "PageCtrl"})
     // Pages
     .when("/soling", {templateUrl: "partials/soling.html", controller: "SolingCtrl"})
     .when("/stocktobunker", {templateUrl: "partials/stocktobunker.html", controller: "StockCtrl"})
