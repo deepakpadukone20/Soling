@@ -11,7 +11,14 @@
 
 <!-- Our Website Content Goes Here -->
 <div ng-include='"templates/header.html"'></div>
-    <div ng-view id="wrap"></div>
+      <div id="wrap" class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">{{title || "Welcome"}}</h3>
+              </div>
+              <div class="panel-body">
+	               <div ng-view > </div>
+	              </div>
+            </div>
 <div ng-include='"templates/footer.html"'></div>
 	
 </body>
