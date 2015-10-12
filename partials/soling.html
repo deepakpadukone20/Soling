@@ -1,6 +1,7 @@
-<div class="container">
-	<div class="section">
-		<div class="container">
+<div class="modal-header">
+            <h3 class="modal-title">Soling</h3>
+        </div>		
+<div class="modal-body">
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
@@ -32,7 +33,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-4 disabled">
+				<div class="col-md-4">
 					<div class="form-group">
 					<label class="control-label" for="dateInput">Date</label>
 					<input class="form-control" id="dateInput"
@@ -49,8 +50,7 @@
 				</div>
 			</div>
 		</div>
-		
-	</div>
-</div>
-
-
+<div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>

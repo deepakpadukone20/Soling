@@ -1,29 +1,59 @@
 var app = angular.module('solingApp', [
-  'ngRoute','ngAnimate','ngSanitize', 'MassAutoComplete'
+  'ngAnimate','ngSanitize', 'MassAutoComplete','ui.bootstrap'
 ]);
 
-
-app.config(['$routeProvider', function ($routeProvider) {
-  $routeProvider
-    // Home
-    .when("/", {templateUrl: "partials/home.html", controller: "PageCtrl"})
-    .when("/login", {templateUrl: "partials/login.html", controller: "PageCtrl"})
-    // Pages
-    .when("/soling", {templateUrl: "partials/soling.html", controller: "SolingCtrl"})
-    .when("/stocktobunker", {templateUrl: "partials/stocktobunker.html", controller: "StockCtrl"})
-    .when("/outsidetostock", {templateUrl: "partials/outsidetostock.html", controller: "OCustomerCtrl"})
-    .when("/sale", {templateUrl: "partials/sale.html", controller: "SaleCtrl"})
-    .when("/expense", {templateUrl: "partials/expense.html", controller: "ExpenseCtrl"})
-    .when("/receipt", {templateUrl: "partials/receipt.html", controller: "ReceiptCtrl"})
-    // else 404
-    .otherwise("/404", {templateUrl: "partials/404.html", controller: "PageCtrl"});
-}]);
-
-app.controller('PageCtrl', function (/* $scope, $location, $http */) {
-  console.log("Page Controller reporting for duty.");
+app.controller('PageCtrl', function  ($rootScope, $location, $http ) {
+  
 });
-app.controller('SolingCtrl', function (/* $scope, $location, $http */) {
-  console.log("Page Controller reporting for duty.");
+
+app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+
+  $scope.items = items;
+  $scope.selected = {
+    item: $scope.items[0]
+  };
+
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
+app.controller('ModalCtrl',function($scope, $uibModal, $log){
+   $scope.items = ['item1', 'item2', 'item3'];
+
+  $scope.animationsEnabled = true;
+
+  $scope.open = function (url,size) {
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'partials/'+url+'.html',
+      controller: 'ModalInstanceCtrl',
+      size: size ||'lg',
+      backdrop :'static',
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
+  $scope.toggleAnimation = function () {
+    $scope.animationsEnabled = !$scope.animationsEnabled;
+  };
+
+})
+app.controller('SolingCtrl', function ($rootScope, $location, $http ) {
+
 });
 app.controller('StockCtrl', function (/* $scope, $location, $http */) {
   console.log("Page Controller reporting for duty.");
@@ -35,7 +65,8 @@ app.controller('SaleCtrl', function (/* $scope, $location, $http */) {
   console.log("Page Controller reporting for duty.");
 });
 app.controller('ExpenseCtrl', function (/* $scope, $location, $http */) {
-  console.log("Page Controller reporting for duty.");
+  $rootScope.dialog.setBody($('<div></div>').load('partials/soling.html'));
+  $rootScope.dialog.show();
 });
 app.controller('ReceiptCtrl', function (/* $scope, $location, $http */) {
   console.log("Page Controller reporting for duty.");

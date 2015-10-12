@@ -12,41 +12,43 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav navbar-right">
+        <div class="collapse navbar-collapse navbar-ex1-collapse" ng-controller="ModalCtrl">
+            <ul  class="nav navbar-nav navbar-right">
                 <!--<li><a href="#/services">Services</a>
                 </li>
                 <li><a href="#/pricing">Pricing Table</a>
                 </li>-->
-                <li><a href="#/login">Login</a>
+                <li><a ng-click="open('login','sm')" href="#">Login</a>
                 </li>
-                <li><a href="#/outsidetostock">Purchase Outside</a>
+                <li><a ng-click="open('outsidetostock')" href="#">Purchase Outside</a>
                 </li>
 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">Transaction<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#/sale">Sale</a>
+                        <li><a ng-click="open('sale')" href="#" >Sale</a>
                         </li>
-                        <li><a href="#/expense">Expense</a>
+                        <li><a ng-click="open('expense')" href="#" >Expense</a>
                         </li> 
-                        <li><a href="#/receipt">Generate Receipt</a>
+                        <li><a ng-click="open('receipt')" href="#">Generate Receipt</a>
                         </li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">Soling Entry<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#/soling">To Stock</a>
+                        <li><a ng-click="open('soling')" href="#">To Stock</a>
                         </li>
-                        <li><a href="#/soling">To Bunker</a>
+                        <li><a ng-click="open('soling')" href="#">To Bunker</a>
                         </li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">Report<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#/report#1">Weekly Payment report</a>
+                        <li><a href="#/report#1">Weekly Sale report</a>
+                        </li>
+                        <li><a href="#/report#2">Weekly Expense report</a>
                         </li>
                         <li><a href="#/report#2">Balance Sheet</a>
                         </li>
