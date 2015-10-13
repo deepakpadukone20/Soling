@@ -1,0 +1,28 @@
+    <button type="button" class="close" ng-click="cancel();">
+        <i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i>
+    </button>
+    <div class="modal-header">
+        <h3 class="modal-title">{{operation}}</h3>
+    </div>
+    <div class="modal-body">
+        <form name="customer_form" class="form-horizontal" role="form" novalidate>
+                <input type="text" class="form-control" name="name" placeholder="NAME" ng-model="customer.name" ng-disabled="customer.id" focus/>
+            <textarea class="form-control" name="description" placeholder="DESCRIPTION" ng-model="customer.description">{{customer.description}}</textarea>
+            <div class="space"></div>
+            <div class="space-4"></div>
+            <div class="modal-footer">
+                <form-element label="">
+                    <div class="text-right">
+                        <a class="btn btn-sm" ng-click="cancel()"><i class="ace-icon fa fa-reply"></i>Cancel</a>
+                        <button ng-click="saveCustomer(customer);"
+                                ng-disabled="customer_form.$invalid || enableUpdate"
+                                class="btn btn-sm btn-primary"
+                                type="submit">
+                            <i class="ace-icon fa fa-check"></i>{{buttonText}}
+                        </button>
+                    </div>
+                </form-element>
+            </div>
+        </form>
+    </div>
+
