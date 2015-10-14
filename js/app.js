@@ -1,6 +1,21 @@
 var app = angular.module('solingApp', [
-  'ngAnimate','ngSanitize', 'MassAutoComplete','ui.bootstrap','toaster'
+  'ngAnimate','ngRoute','ngSanitize', 'MassAutoComplete','ui.bootstrap','toaster'
 ]);
+
+
+app.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+    when('/', {
+      title: 'Suppliers',
+      templateUrl: 'partials/suppliers.html',
+      controller: 'suppliersCtrl'
+    })
+    .otherwise({
+      redirectTo: '/'
+    });;
+}]);
+     
 
 app.controller('PageCtrl', function  ($rootScope, $location, $http ) {
   
@@ -11,7 +26,7 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $controlle
    
     $controller('authCtrl', {$scope: $scope});
   
-    
+     
   
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
@@ -26,8 +41,8 @@ app.controller('ModalCtrl',function($scope, $uibModal, $log){
       animation: $scope.animationsEnabled,
       templateUrl: 'partials/'+url+'.html',
       controller: 'ModalInstanceCtrl',
-      size: size ||'lg',
-      backdrop :'static',
+      size: size ||'md',
+      backdrop :false,
       resolve: {
         items: function () {
           return $scope.items;
