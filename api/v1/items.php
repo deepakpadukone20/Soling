@@ -21,7 +21,7 @@ delete(table name, where clause as array)
 // items
 $app->get('/items', function() { 
     global $db;
-    $rows = $db->select("items","id,sku,name,description,price,mrp,stock,image,packing,status",array());
+    $rows = $db->select("inventory","id,name,price,quantity,sellable,date,modifieddate,deleted",array());
     echoResponse(200, $rows);
 });
 
@@ -29,26 +29,28 @@ $app->post('/items', function() use ($app) {
     $data = json_decode($app->request->getBody());
     $mandatory = array('name');
     global $db;
-    $rows = $db->insert("items", $data, $mandatory);
+    $rows = $db->insert("inventory", $data, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "Item added successfully.";
     echoResponse(200, $rows);
 });
 
-$app->put('/items/:id', function($id) use ($app) { 
+$app->put('/items', function() use ($app) { 
+    $id = $_REQUEST['id'];
     $data = json_decode($app->request->getBody());
     $condition = array('id'=>$id);
     $mandatory = array();
     global $db;
-    $rows = $db->update("items", $data, $condition, $mandatory);
+    $rows = $db->update("inventory", $data, $condition, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "Item information updated successfully.";
     echoResponse(200, $rows);
 });
 
-$app->delete('/items/:id', function($id) { 
+$app->delete('/items', function() { 
+    $id = $_REQUEST['id'];
     global $db;
-    $rows = $db->delete("items", array('id'=>$id));
+    $rows = $db->delete("inventory", array('id'=>$id));
     if($rows["status"]=="success")
         $rows["message"] = "Item removed successfully.";
     echoResponse(200, $rows);

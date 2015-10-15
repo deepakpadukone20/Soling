@@ -29,16 +29,16 @@ $app->post('/login', function() use ($app) {
     $email = $r->email;
     $password = $r->password;
     $condition =  array('email' => $email);
-    $user = $db->select("users","id,name,password,email,date",$condition);
+    $user = $db->select("user","id,name,password,email,created_date",$condition);
    
     if ($user != NULL) {
         if(passwordHash::check_password($user['password'],$password)){
         $response['status'] = "success";
         $response['message'] = 'Logged in successfully.';
         $response['name'] = $user['name'];
-        $response['uid'] = $user['uid'];
+        $response['id'] = $user['id'];
         $response['email'] = $user['email'];
-        $response['createdAt'] = $user['created'];
+        $response['createdAt'] = $user['created_date'];
         if (!isset($_SESSION)) {
             session_start();
         }

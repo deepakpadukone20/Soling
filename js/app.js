@@ -6,10 +6,15 @@ var app = angular.module('solingApp', [
 app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-    when('/', {
+    when('/suppliers', {
       title: 'Suppliers',
       templateUrl: 'partials/suppliers.html',
       controller: 'suppliersCtrl'
+    })
+    .when('/items', {
+      title: 'Items',
+      templateUrl: 'partials/Items.html',
+      controller: 'itemsCtrl'
     })
     .otherwise({
       redirectTo: '/'

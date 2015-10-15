@@ -21,7 +21,7 @@ delete(table name, where clause as array)
 // suppliers
 $app->get('/suppliers', function() { 
     global $db;
-    $rows = $db->select("users","id,name,email,password",array());
+    $rows = $db->select("supplier","id,name,address,phone,contact_person_name,is_active",array());
     echoResponse(200, $rows);
 });
 
@@ -29,7 +29,7 @@ $app->post('/suppliers', function() use ($app) {
     $data = json_decode($app->request->getBody());
     $mandatory = array('name');
     global $db;
-    $rows = $db->insert("suppliers", $data, $mandatory);
+    $rows = $db->insert("supplier", $data, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "Supplier added successfully.";
     echoResponse(200, $rows);
@@ -40,7 +40,7 @@ $app->put('/suppliers/:id', function($id) use ($app) {
     $condition = array('id'=>$id);
     $mandatory = array();
     global $db;
-    $rows = $db->update("suppliers", $data, $condition, $mandatory);
+    $rows = $db->update("supplier", $data, $condition, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "Supplier information updated successfully.";
     echoResponse(200, $rows);
@@ -48,7 +48,7 @@ $app->put('/suppliers/:id', function($id) use ($app) {
 
 $app->delete('/suppliers/:id', function($id) { 
     global $db;
-    $rows = $db->delete("suppliers", array('id'=>$id));
+    $rows = $db->delete("supplier", array('id'=>$id));
     if($rows["status"]=="success")
         $rows["message"] = "supplier removed successfully.";
     echoResponse(200, $rows);

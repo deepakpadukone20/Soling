@@ -4,8 +4,8 @@ app.controller('suppliersCtrl', function ($scope, $modal, $filter, Data) {
         $scope.suppliers = data.data;
     });
     $scope.changesupplierstatus = function(supplier){
-        supplier.status = (supplier.status=="Active" ? "Inactive" : "Active");
-        Data.put("suppliers/"+supplier.id,{status:supplier.status});
+        supplier.is_active = (supplier.is_active=="0" ? "1" : "0");
+        Data.put("suppliers/"+supplier.id,{status:supplier.is_active});
     };
     $scope.deletesupplier = function(supplier){
         if(confirm("Are you sure to remove the supplier")){
@@ -41,10 +41,9 @@ app.controller('suppliersCtrl', function ($scope, $modal, $filter, Data) {
  $scope.columns = [
                     {text:"ID",predicate:"id",sortable:true,dataType:"number"},
                     {text:"Name",predicate:"name",sortable:true},
-                    {text:"Price",predicate:"price",sortable:true},
-                    {text:"Stock",predicate:"stock",sortable:true},
-                    {text:"Packing",predicate:"packing",reverse:true,sortable:true,dataType:"number"},
-                    {text:"Description",predicate:"description",sortable:true},
+                    {text:"Address",predicate:"address",sortable:true},
+                    {text:"Contact Person",predicate:"contact_person_name",sortable:true},
+                    {text:"Phone",predicate:"phone",reverse:true,sortable:true,dataType:"number"},
                     {text:"Status",predicate:"status",sortable:true},
                     {text:"Action",predicate:"",sortable:false}
                 ];
@@ -79,7 +78,7 @@ app.controller('supplierEditCtrl', function ($scope, $modalInstance, item, Data)
                     }
                 });
             }else{
-                supplier.status = 'Active';
+                supplier.is_active = '1';
                 Data.post('suppliers', supplier).then(function (result) {
                     if(result.status != 'error'){
                         var x = angular.copy(supplier);

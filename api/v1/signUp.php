@@ -18,7 +18,7 @@ $app->post('/signUp', function() use ($app) {
     if($isUserExists["code"] == 204){
         $password = $r->password;
         $r->password = passwordHash::hash($password);
-        $result = $db->insert("users", $r,array());
+        $result = $db->insert("user", $r,array());
         if ($result != NULL) {
             $response["status"] = "success";
             $response["message"] = "User account created successfully";
