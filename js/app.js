@@ -13,7 +13,7 @@ app.config(['$routeProvider',
     })
     .when('/items', {
       title: 'Items',
-      templateUrl: 'partials/Items.html',
+      templateUrl: 'partials/items.html',
       controller: 'itemsCtrl'
     })
     .otherwise({

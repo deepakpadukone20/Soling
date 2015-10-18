@@ -14,7 +14,7 @@ $app->post('/signUp', function() use ($app) {
     global $db;
         $condition =  array('email' => $r->name );
 
-    $isUserExists = $db->select("users","id", $condition);
+    $isUserExists = $db->select("user","id", $condition);
     if($isUserExists["code"] == 204){
         $password = $r->password;
         $r->password = passwordHash::hash($password);
