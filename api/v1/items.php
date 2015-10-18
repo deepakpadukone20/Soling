@@ -21,7 +21,7 @@ delete(table name, where clause as array)
 // items
 $app->get('/items', function() { 
     global $db;
-    $rows = $db->select("inventory","id,name,price,quantity,sellable,date,modifieddate,deleted",array());
+    $rows = $db->select("inventory","id,name,price,quantity,isSellable,date,updateDate,isActive",array());
     echoResponse(200, $rows);
 });
 

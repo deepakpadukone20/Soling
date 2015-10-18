@@ -4,8 +4,8 @@ app.controller('itemsCtrl', function ($scope, $modal, $filter, Data) {
         $scope.items = data.data;
     });
     $scope.changeitemdeleted = function(item){
-        item.sellable = (item.sellable=="1" ? "0" : "1");
-        Data.put("items?id="+item.id,{sellable:item.sellable});
+        item.isSellable = (item.isSellable=="1" ? "0" : "1");
+        Data.put("items?id="+item.id,{sellable:item.isSellable});
     };
     $scope.deleteitem = function(item){
         if(confirm("Are you sure to remove the item")){
@@ -32,7 +32,7 @@ app.controller('itemsCtrl', function ($scope, $modal, $filter, Data) {
             }else if(selectedObject.save == "update"){
                 p.quantity = selectedObject.quantity;
                 p.price = selectedObject.price;
-                p.modifieddate = selectedObject.modifieddate;
+                p.updateDate = selectedObject.updateDate;
                 p.name = selectedObject.name;
             }
         });
@@ -44,7 +44,7 @@ app.controller('itemsCtrl', function ($scope, $modal, $filter, Data) {
                     {text:"Price",predicate:"price",sortable:true},
                     {text:"Stock",predicate:"quantity",sortable:true},
                     {text:"Added Date",predicate:"date",sortable:true},
-                    {text:"Last Updated",predicate:"modifieddate",sortable:true},
+                    {text:"Last Updated",predicate:"updateDate",sortable:true},
                     {text:"Sellable",predicate:"sellable",sortable:true},
                     {text:"Status",predicate:"deleted",sortable:true},
                     {text:"Action",predicate:"",sortable:false}
@@ -60,8 +60,8 @@ app.controller('itemEditCtrl', function ($scope, $modalInstance, item, Data,$fil
         $scope.cancel = function () {
             $modalInstance.dismiss('Close');
         };
-        $scope.item.modifieddate = $filter('date')(new Date(), "yyyy-MM-dd HH:mm:ss")
-        $scope.item.date =  $scope.item.modifieddate
+        $scope.item.updateDate = $filter('date')(new Date(), "yyyy-MM-dd HH:mm:ss")
+        $scope.item.date =  $scope.item.updateDate
 
         $scope.title = (item.id > 0) ? 'Edit item' : 'Add item';
         $scope.buttonText = (item.id > 0) ? 'Update item' : 'Add New item';
@@ -73,7 +73,7 @@ app.controller('itemEditCtrl', function ($scope, $modalInstance, item, Data,$fil
         $scope.saveitem = function (item) {
             if(item.id > 0){
                 Data.put('items?id='+item.id, item).then(function (result) {
-                    if(result.deleted != 'error'){
+                    if(result.isActive != 'error'){
                         var x = angular.copy(item);
                         x.save = 'update';
                         $modalInstance.close(x);
@@ -82,9 +82,9 @@ app.controller('itemEditCtrl', function ($scope, $modalInstance, item, Data,$fil
                     }
                 });
             }else{
-                item.deleted = '0';
+                item.isActive = '0';
                 Data.post('items', item).then(function (result) {
-                    if(result.deleted != 'error'){
+                    if(result.isActive != 'error'){
                         var x = angular.copy(item);
                         x.save = 'insert';
                         x.id = result.data;

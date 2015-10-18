@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `inventory` (
   `quantity` int(11) NOT NULL,
   `sellable` tinyint(1) DEFAULT '1',
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modifieddate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `inventory` (
 -- Dumping data for table `inventory`
 --
 
-INSERT INTO `inventory` (`id`, `name`, `price`, `quantity`, `sellable`, `date`, `modifieddate`, `deleted`) VALUES
+INSERT INTO `inventory` (`id`, `name`, `price`, `quantity`, `sellable`, `date`, `updateDate`, `deleted`) VALUES
 (15, 'Cement Block', '212.00', 20, 1, '2015-10-15 21:38:13', '2015-10-15 21:38:13', 0),
 (17, 'test item', '100.00', 1, 0, '2015-10-15 19:12:10', '2015-10-15 19:12:10', 0),
 (21, 'Himalaya', '123.00', 1, 1, '2015-10-15 21:52:45', '2015-10-15 21:52:45', 0),

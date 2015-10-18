@@ -9,16 +9,21 @@
             </button>
             <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
             <a class="navbar-brand" href="#/">App</a>
+
+
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse" ng-controller="ModalCtrl">
             <ul  class="nav navbar-nav navbar-right">
                 <!--<li><a href="#/services">Services</a>
-                </li>
-                <li><a href="#/pricing">Pricing Table</a>
                 </li>-->
-                <li><a ng-click="open('login','sm')" href="#">Login</a>
+                <li ng-if="uid"><a href="#">{{("Hi,"+ username)}}</a>
+                </li>
+                <li ng-if="uid">
+                    <a href="#" ng-click="open('logout','sm')">Logout</a>
+                </li>
+                <li ng-hide="uid"><a ng-click="open('login','sm')" href="#">Login</a>
                 </li>
                 <li><a ng-click="open('outsidetostock')" href="#">Purchase Outside</a>
                 </li>

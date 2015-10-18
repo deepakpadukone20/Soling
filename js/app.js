@@ -28,8 +28,7 @@ app.controller('PageCtrl', function  ($rootScope, $location, $http ) {
 
 app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $controller) {
 
-   
-    $controller('authCtrl', {$scope: $scope});
+    $controller('authCtrl', {$scope: $scope,$modalInstance:$modalInstance});
   
      
   
@@ -37,6 +36,7 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $controlle
     $modalInstance.dismiss('cancel');
   };
 });
+
 app.controller('ModalCtrl',function($scope, $uibModal, $log){
 
   $scope.animationsEnabled = true;
