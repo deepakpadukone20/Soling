@@ -6,7 +6,7 @@ app.controller('suppliersCtrl', function ($scope, $modal, $filter, Data) {
     });
 
     $scope.changesupplierstatus = function (supplier) {
-        supplier.is_active = (supplier.is_active == "0" ? "1" : "0");
+        supplier.isActive = (supplier.isActive == "0" ? "1" : "0");
         Data.put('suppliers?id=' + supplier.id, supplier);
     };
 
@@ -21,9 +21,9 @@ app.controller('suppliersCtrl', function ($scope, $modal, $filter, Data) {
     var supplierClass = function () {
         this.name = "";
         this.address = "";
-        this.contact_person_name = "";
+        this.contactPersonName = "";
         this.phone = "";
-        this.is_active = 1;
+        this.isActive = 1;
     };
 
     $scope.showModalWindow = function (curSupplier) {
@@ -78,7 +78,7 @@ app.controller('suppliersCtrl', function ($scope, $modal, $filter, Data) {
                        { text: "ID", predicate: "id", sortable: true, dataType: "number" },
                        { text: "Name", predicate: "name", sortable: true },
                        { text: "Address", predicate: "address", sortable: true },
-                       { text: "Contact Person", predicate: "contact_person_name", sortable: true },
+                       { text: "Contact Person", predicate: "contactPersonName", sortable: true },
                        { text: "Phone", predicate: "phone", reverse: true, sortable: true, dataType: "number" },
                        { text: "Status", predicate: "status", sortable: true },
                        { text: "Action", predicate: "", sortable: false }

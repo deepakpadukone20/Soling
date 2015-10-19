@@ -21,7 +21,7 @@ delete(table name, where clause as array)
 // suppliers
 $app->get('/suppliers', function() { 
     global $db;
-    $rows = $db->select("supplier","id,name,address,phone,contact_person_name,is_active",array());
+    $rows = $db->select("supplier","id,name,address,phone,contactPersonName,isActive",array());
     echoResponse(200, $rows);
 });
 
