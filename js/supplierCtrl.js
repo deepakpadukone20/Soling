@@ -1,94 +1,88 @@
 app.controller('suppliersCtrl', function ($scope, $modal, $filter, Data) {
     $scope.supplier = {};
-    Data.get('suppliers').then(function(data){
+
+    Data.get('suppliers').then(function (data) {
         $scope.suppliers = data.data;
     });
-    $scope.changesupplierstatus = function(supplier){
-        supplier.is_active = (supplier.is_active=="0" ? "1" : "0");
-        Data.put("suppliers/"+supplier.id,{status:supplier.is_active});
+
+    $scope.changesupplierstatus = function (supplier) {
+        supplier.is_active = (supplier.is_active == "0" ? "1" : "0");
+        Data.put('suppliers?id=' + supplier.id, supplier);
     };
-    $scope.deletesupplier = function(supplier){
-        if(confirm("Are you sure to remove the supplier")){
-            Data.delete("suppliers/"+supplier.id).then(function(result){
-                $scope.suppliers = _.without($scope.suppliers, _.findWhere($scope.suppliers, {id:supplier.id}));
+
+    $scope.deletesupplier = function (curSupplier) {
+        if (confirm("Are you sure to remove the supplier")) {
+            Data.delete("suppliers?id=" + curSupplier.id).then(function (result) {
+                $scope.suppliers = _.without($scope.suppliers, _.findWhere($scope.suppliers, { id: curSupplier.id }));
             });
         }
     };
-    $scope.open = function (p,size) {
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/supplierEdit.html',
-          controller: 'supplierEditCtrl',
-          size: size,
-          resolve: {
-            item: function () {
-              return p;
-            }
-          }
-        });
-        modalInstance.result.then(function(selectedObject) {
-            if(selectedObject.save == "insert"){
-                $scope.suppliers.push(selectedObject);
-                $scope.suppliers = $filter('orderBy')($scope.suppliers, 'id', 'reverse');
-            }else if(selectedObject.save == "update"){
-                p.description = selectedObject.description;
-                p.price = selectedObject.price;
-                p.stock = selectedObject.stock;
-                p.packing = selectedObject.packing;
+
+    var supplierClass = function () {
+        this.name = "";
+        this.address = "";
+        this.contact_person_name = "";
+        this.phone = "";
+        this.is_active = 1;
+    };
+
+    $scope.showModalWindow = function (curSupplier) {
+        if (curSupplier != undefined && curSupplier != null) {
+            $scope.supplier = curSupplier;
+        }
+        else {
+
+            $scope.supplier = new supplierClass();
+        }
+        $('#myModal').modal('show');
+    };
+
+    $scope.saveItem = function () {
+        if ($scope.supplier.id == undefined) {
+            $scope.addNewSupplier();
+        }
+        else {
+            $scope.updateSupplier();
+        }
+
+    };
+
+    $scope.updateSupplier = function () {
+        Data.put('suppliers?id=' + $scope.supplier.id, $scope.supplier).then(function (result) {
+            if (result.deleted != 'error') {                
+                $('#myModal').modal('hide');
+            } else {
+                console.log(result);
             }
         });
     };
-    
- $scope.columns = [
-                    {text:"ID",predicate:"id",sortable:true,dataType:"number"},
-                    {text:"Name",predicate:"name",sortable:true},
-                    {text:"Address",predicate:"address",sortable:true},
-                    {text:"Contact Person",predicate:"contact_person_name",sortable:true},
-                    {text:"Phone",predicate:"phone",reverse:true,sortable:true,dataType:"number"},
-                    {text:"Status",predicate:"status",sortable:true},
-                    {text:"Action",predicate:"",sortable:false}
-                ];
+
+    $scope.addNewSupplier = function () {
+        //Data.post("suppliers", $scope.item1);
+        Data.postservice('suppliers', $scope.supplier)
+            .success(function (result) {
+                if (result.status != 'error') {                    
+                    $scope.suppliers.push($scope.supplier);
+                    $('#myModal').modal('hide');
+                } else {
+                    console.log(result);
+                }
+            })
+            .error(function () {
+                alert("error");
+            })
+        ;
+    };
+
+    $scope.columns = [
+                       { text: "ID", predicate: "id", sortable: true, dataType: "number" },
+                       { text: "Name", predicate: "name", sortable: true },
+                       { text: "Address", predicate: "address", sortable: true },
+                       { text: "Contact Person", predicate: "contact_person_name", sortable: true },
+                       { text: "Phone", predicate: "phone", reverse: true, sortable: true, dataType: "number" },
+                       { text: "Status", predicate: "status", sortable: true },
+                       { text: "Action", predicate: "", sortable: false }
+    ];
 
 });
 
-
-app.controller('supplierEditCtrl', function ($scope, $modalInstance, item, Data) {
-
-  $scope.supplier = angular.copy(item);
-        
-        $scope.cancel = function () {
-            $modalInstance.dismiss('Close');
-        };
-        $scope.title = (item.id > 0) ? 'Edit supplier' : 'Add supplier';
-        $scope.buttonText = (item.id > 0) ? 'Update supplier' : 'Add New supplier';
-
-        var original = item;
-        $scope.isClean = function() {
-            return angular.equals(original, $scope.supplier);
-        }
-        $scope.savesupplier = function (supplier) {
-            supplier.uid = $scope.uid;
-            if(supplier.id > 0){
-                Data.put('suppliers/'+supplier.id, supplier).then(function (result) {
-                    if(result.status != 'error'){
-                        var x = angular.copy(supplier);
-                        x.save = 'update';
-                        $modalInstance.close(x);
-                    }else{
-                        console.log(result);
-                    }
-                });
-            }else{
-                supplier.is_active = '1';
-                Data.post('suppliers', supplier).then(function (result) {
-                    if(result.status != 'error'){
-                        var x = angular.copy(supplier);
-                        x.save = 'insert';
-                        x.id = result.data;
-                        $modalInstance.close(x);
-                    }else{
-                        console.log(result);
-                    }
-                });
-            }
-        };
-});

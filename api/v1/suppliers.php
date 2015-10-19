@@ -35,18 +35,23 @@ $app->post('/suppliers', function() use ($app) {
     echoResponse(200, $rows);
 });
 
-$app->put('/suppliers/:id', function($id) use ($app) { 
+
+$app->put('/suppliers', function() use ($app) { 
+    $id = $_REQUEST['id'];
     $data = json_decode($app->request->getBody());
     $condition = array('id'=>$id);
     $mandatory = array();
     global $db;
     $rows = $db->update("supplier", $data, $condition, $mandatory);
     if($rows["status"]=="success")
-        $rows["message"] = "Supplier information updated successfully.";
+        $rows["message"] = "Item information updated successfully.";
     echoResponse(200, $rows);
 });
 
-$app->delete('/suppliers/:id', function($id) { 
+
+
+$app->delete('/suppliers', function() { 
+    $id = $_REQUEST['id'];
     global $db;
     $rows = $db->delete("supplier", array('id'=>$id));
     if($rows["status"]=="success")
