@@ -8,7 +8,7 @@
 					<div class="form-group">
 						<label class="control-label" for="dateInput">Date</label>
 						<input class="form-control" ng-disabled=true id="dateInput"
-						type="text" ng-model="item.modifieddate">
+						type="text" ng-model="item.updateDate">
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -22,7 +22,7 @@
 				<div class="col-md-12">
 					<div class="form-group">
 						<label for="itemType">Type</label>
-						<select class="form-control" id="itemType" ng-model="item.sellable">
+						<select class="form-control" id="itemType" ng-model="item.isSellable">
 							<option value="1">This item is for selling</option>
 							<option value="0">This item is for company use</option>
 						</select>

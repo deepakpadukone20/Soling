@@ -21,13 +21,13 @@
     
     <tr><th ng-repeat="c in columns">{{c.text}}</th></tr>
 
-    <tr ng-repeat="c in items | filter:filterItem | orderBy:'-id'" id="{{c.id}}" animate-on-change='c.date + c.quantity + c.price + c.modifieddate' ng-animate=" 'animate'">
-        <td>{{c.id}}</td><td>{{c.name}}</td><td>{{c.price}}</td><td>{{c.quantity}}</td><td>{{c.date | date : 'dd-MMM-yyyy'}}</td><td>{{c.modifieddate| date : 'dd-MMM-yyyy'}}</td>
+    <tr ng-repeat="c in items | filter:filterItem | orderBy:'-id'" id="{{c.id}}" animate-on-change='c.date + c.quantity + c.price + c.updateDate' ng-animate=" 'animate'">
+        <td>{{c.id}}</td><td>{{c.name}}</td><td>{{c.price}}</td><td>{{c.quantity}}</td><td>{{c.date | date : 'dd-MMM-yyyy'}}</td><td>{{c.updateDate| date : 'dd-MMM-yyyy'}}</td>
         <td>
-            <button class="btn" ng-class="{1:'btn-success', 0:''}[c.sellable]" ng-click="changeitemdeleted(c);">{{c.sellable ? "Active":"Inactive"}}</button>
+            <button class="btn" ng-class="{1:'btn-success', 0:''}[c.isSellable]" ng-click="changeitemdeleted(c);">{{c.isSellable ? "Active":"Inactive"}}</button>
         </td>
          <td>
-            <button class="btn" ng-class="{1:'btn-failure', 0:'btn-success'}[c.deleted]">{{c.deleted ? "Deleted":"Available"}}</button>
+            <button class="btn" ng-class="{1:'btn-failure', 0:'btn-success'}[c.isActive]">{{c.isActive ? "Deleted":"Available"}}</button>
         </td>
         <td style="width:100px">
             <div class="btn-group">

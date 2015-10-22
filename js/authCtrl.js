@@ -1,4 +1,4 @@
-app.controller('authCtrl', function ($scope,$location, $http, Data) {
+app.controller('authCtrl', function ($scope,$location, $http, Data,$rootScope,$modalInstance) {
     $scope.login = {};
     $scope.signup = {};
     $scope.isSignUpMode = false;
@@ -33,7 +33,10 @@ app.controller('authCtrl', function ($scope,$location, $http, Data) {
         Data.post('login', user).then(function (results) {
             Data.toast(results);
             if (results.status == "success") {
-                $location.path('dashboard');
+                $rootScope.uid = results.id;
+                $rootScope.username = results.name;
+                $modalInstance.close();
+                $location.path('/');
             }
         });
     };
@@ -48,8 +51,11 @@ app.controller('authCtrl', function ($scope,$location, $http, Data) {
     };
     $scope.logout = function () {
         Data.get('logout').then(function (results) {
-            Data.toast(results);
-            $location.path('login');
+            if(results.status == "success"){
+                $rootScope.uid = "0";
+                $rootScope.username = "";
+                
+            }
         });
     }
 });
