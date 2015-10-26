@@ -29,5 +29,8 @@ app.factory("Data", ['$http', 'toaster',
             });
         };
 
+        obj.postservice = function (q, object) {
+            return $http.post(serviceBase + q, object);
+        };
         return obj;
 }]);
