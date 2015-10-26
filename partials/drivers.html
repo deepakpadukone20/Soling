@@ -1,0 +1,101 @@
+<h4 class="blog-post-title">Drivers</h4>
+<hr/>
+
+<button type="button" class="btn btn-danger fa fa-plus" ng-click="showModalWindow()">&nbsp;Add New Driver</button>
+<div class="table-responsive">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            List of Drivers
+            <div class="sw-search">
+                <div class="nav-search" id="nav-search">
+                    Filter: <span class="input-icon">
+                        <input placeholder="Filter Drivers list ..." class="nav-search-input" ng-model="filterdriver" ng-change="resetLimit();" autocomplete="off" type="text" style="width:300px;" focus>
+                        <i class="search-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <tr ng-show="Drivers.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
+                <tr ng-hide="Drivers.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
+
+                <tr><th ng-repeat="c in columns">{{c.text}}</th></tr>
+                <tr ng-repeat="c in Drivers | filter:filterdriver | orderBy:'-id'" id="{{c.id}}" animate-on-change='c.packing + c.stock + c.price + c.description' ng-animate=" 'animate'">
+                    <td>{{c.id}}</td>
+                    <td>{{c.name}}</td>
+                    <td>{{c.address}}</td>
+                    <td>{{c.phone}}</td>
+                    <td>
+                        <button class="btn" ng-class="{'1':'btn-success', '0':''}[c.isOwnEmployee]" ng-click="changeisOwnEmployee(c);">{{c.isOwnEmployee ? "Yes":"No"}}</button>
+                    </td>
+                    <td>{{c.date}}</td>                    
+                    <td>
+                        <button class="btn" ng-class="{'1':'btn-success', '0':''}[c.isActive]" ng-click="changeDriverstatus(c);">{{c.isActive ? "Active":"Inactive"}}</button>
+                    </td>
+                    <td>{{c.salary}}</td>                    
+                    <td style="width:100px">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default fa fa-edit" ng-click="showModalWindow(c);"></button>
+                            <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="deletedriver(c);"></button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+</div>
+
+<div id="myModal" class="modal fade" api="samplemodalwindow" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">{{title}}</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="itemName">Name</label>
+                            <input class="form-control" id="driverName"
+                                   type="text" ng-model="driver.name">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="itemName">Address</label>
+                            <input class="form-control" id="driverAddress"
+                                   type="text" ng-model="driver.address">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="itemName">Phone</label>
+                            <input class="form-control" id="driverphone"
+                                   type="text" ng-model="driver.phone">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="itemName">salary</label>
+                            <input class="form-control" id="drivercontactpersonname"
+                                   type="text" ng-model="driver.salary">
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="saveItem(item)">OK</button>
+                <button class="btn btn-warning" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+            
+        </div>
+ 
+</div>
+
+
+
+     

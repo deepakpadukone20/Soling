@@ -21,7 +21,7 @@ delete(table name, where clause as array)
 // drivers
 $app->get('/drivers', function() { 
     global $db;
-    $rows = $db->select("drivers","id,sku,name,description,price,mrp,stock,image,packing,status",array());
+    $rows = $db->select("driver","id,name,address,phone,isOwnEmployee,date,isActive,salary",array());
     echoResponse(200, $rows);
 });
 
@@ -29,26 +29,31 @@ $app->post('/drivers', function() use ($app) {
     $data = json_decode($app->request->getBody());
     $mandatory = array('name');
     global $db;
-    $rows = $db->insert("drivers", $data, $mandatory);
+    $rows = $db->insert("driver", $data, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "driver added successfully.";
     echoResponse(200, $rows);
 });
 
-$app->put('/drivers/:id', function($id) use ($app) { 
+
+$app->put('/drivers', function() use ($app) { 
+    $id = $_REQUEST['id'];
     $data = json_decode($app->request->getBody());
     $condition = array('id'=>$id);
     $mandatory = array();
     global $db;
-    $rows = $db->update("drivers", $data, $condition, $mandatory);
+    $rows = $db->update("driver", $data, $condition, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "driver information updated successfully.";
     echoResponse(200, $rows);
 });
 
-$app->delete('/drivers/:id', function($id) { 
+
+
+$app->delete('/drivers', function() { 
+    $id = $_REQUEST['id'];
     global $db;
-    $rows = $db->delete("drivers", array('id'=>$id));
+    $rows = $db->delete("driver", array('id'=>$id));
     if($rows["status"]=="success")
         $rows["message"] = "driver removed successfully.";
     echoResponse(200, $rows);
