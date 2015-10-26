@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `purchases` (
 CREATE TABLE IF NOT EXISTS `supplier` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(100) NOT NULL,
-  `adddress` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
   `contactPersonName` varchar(100) NOT NULL,
   `phone` decimal(10,0) NOT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT '1'
