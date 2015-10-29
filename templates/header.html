@@ -15,10 +15,12 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse" ng-controller="ModalCtrl">
             <ul  class="nav navbar-nav navbar-right">
                 <!--<li><a href="#/services">Services</a>
-                </li>
-                <li><a href="#/pricing">Pricing Table</a>
                 </li>-->
-                <li><a ng-click="open('login','sm')" href="#">Login</a>
+                <li><a ng-show="uid" href="#">Hi {{username}}!</a>
+                </li>
+                <li><a ng-show="uid" ng-click="open('logout','sm')" href="#">Logout</a>
+                </li>
+                <li><a ng-hide="uid" ng-click="open('login','sm')" href="#">Login</a>
                 </li>
                 <li><a ng-click="open('outsidetostock')" href="#">Purchase Outside</a>
                 </li>

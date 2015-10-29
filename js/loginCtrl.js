@@ -1,4 +1,4 @@
-app.controller('authCtrl', function ($scope,$location, $http, Data,$rootScope,$modalInstance) {
+app.controller('loginCtrl', function ($scope,$location, $http, Data ,$rootScope,$modalInstance) {
     $scope.login = {};
     $scope.signup = {};
     $scope.isSignUpMode = false;
@@ -17,6 +17,9 @@ app.controller('authCtrl', function ($scope,$location, $http, Data,$rootScope,$m
             $scope.signInMsg = "Sign Up Now!";
         }
     }
+    $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+     };
     $scope.ok = function(){
         var user = {
             name:$scope.user.name || "",

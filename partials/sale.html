@@ -16,8 +16,7 @@
 
 						<label for="itemName">Item </label>
 						<select class="form-control" id="itemName">
-							<option>40 mm stone</option>
-							<option>20 mm stone</option>
+							<option ng-repeat="item in items" value="{{item.id}}">{{item.name}}</option>
 						</select>
 					</div>
 					<div class="form-group">
@@ -43,8 +42,7 @@
 					<div class="form-group">
 						<label for="vehicleNo">Vehicle Number</label>
 						<select class="form-control" id="vehicleNo">
-							<option>KA AAA</option>
-							<option>MH AAW</option>
+							<option ng-repeat="vehicle in vehicles"  value="{{vehicle.id}}">{{vehicle.name}}</option>
 						</select>
 					</div>
 				</div>

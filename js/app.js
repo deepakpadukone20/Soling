@@ -34,7 +34,7 @@ app.controller('PageCtrl', function  ($rootScope, $location, $http ) {
 app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $controller) {
 
    
-    $controller('authCtrl', {$scope: $scope});
+    $controller('loginCtrl', {$scope: $scope,$modalInstance:$modalInstance});
   
      
   
@@ -50,7 +50,7 @@ app.controller('ModalCtrl',function($scope, $uibModal, $log){
     var modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'partials/'+url+'.html',
-      controller: 'ModalInstanceCtrl',
+      controller: url+'Ctrl',
       size: size ||'md',
       backdrop :false,
       resolve: {
