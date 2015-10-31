@@ -21,6 +21,11 @@ app.config(['$routeProvider',
         templateUrl: 'partials/drivers.html',
         controller: 'driversCtrl'
     })
+    .when('/customers', {
+        title: 'customers',
+        templateUrl: 'partials/customers.html',
+        controller: 'customersCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });;
