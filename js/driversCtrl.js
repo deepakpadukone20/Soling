@@ -6,6 +6,7 @@ app.controller('driversCtrl', function ($scope, $modal, $filter, Data) {
     });
 
     $scope.changeDriverstatus = function (driver) {
+
         driver.isActive = (driver.isActive == "0" ? "1" : "0");
         Data.put('drivers?id=' + driver.id, driver);
     };

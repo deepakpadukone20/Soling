@@ -21,6 +21,11 @@ app.config(['$routeProvider',
         templateUrl: 'partials/drivers.html',
         controller: 'driversCtrl'
     })
+    .when('/vehicles', {
+        title: 'Vehicles',
+        templateUrl: 'partials/vehicles.html',
+        controller: 'vehiclesCtrl'
+    })
     .when('/customers', {
         title: 'customers',
         templateUrl: 'partials/customers.html',

@@ -21,34 +21,39 @@ delete(table name, where clause as array)
 // vehicles
 $app->get('/vehicles', function() { 
     global $db;
-    $rows = $db->select("vehicles","id,sku,name,description,price,mrp,stock,image,packing,status",array());
+    $rows = $db->select("vehicle","id,make,model,date,isOwnVehicle",array());
     echoResponse(200, $rows);
 });
 
 $app->post('/vehicles', function() use ($app) { 
     $data = json_decode($app->request->getBody());
-    $mandatory = array('name');
+    $mandatory = array('make');
     global $db;
-    $rows = $db->insert("vehicles", $data, $mandatory);
+    $rows = $db->insert("vehicle", $data, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "vehicle added successfully.";
     echoResponse(200, $rows);
 });
 
-$app->put('/vehicles/:id', function($id) use ($app) { 
+
+$app->put('/vehicles', function() use ($app) { 
+    $id = $_REQUEST['id'];
     $data = json_decode($app->request->getBody());
     $condition = array('id'=>$id);
     $mandatory = array();
     global $db;
-    $rows = $db->update("vehicles", $data, $condition, $mandatory);
+    $rows = $db->update("vehicle", $data, $condition, $mandatory);
     if($rows["status"]=="success")
-        $rows["message"] = "vehicle information updated successfully.";
+        $rows["message"] = "Item information updated successfully.";
     echoResponse(200, $rows);
 });
 
-$app->delete('/vehicles/:id', function($id) { 
+
+
+$app->delete('/vehicles', function() { 
+    $id = $_REQUEST['id'];
     global $db;
-    $rows = $db->delete("vehicles", array('id'=>$id));
+    $rows = $db->delete("vehicle", array('id'=>$id));
     if($rows["status"]=="success")
         $rows["message"] = "vehicle removed successfully.";
     echoResponse(200, $rows);
