@@ -21,7 +21,7 @@ delete(table name, where clause as array)
 // customers
 $app->get('/customers', function() { 
     global $db;
-    $rows = $db->select("customer","id,name,address,phone,contactPersonName,isActive",array());
+    $rows = $db->select("customer","id,name,address,phone,date,contactPersonName,isActive",array());
     echoResponse(200, $rows);
 });
 
