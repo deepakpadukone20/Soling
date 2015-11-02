@@ -5,6 +5,7 @@ require_once 'dbHelper.php';
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
 $app = \Slim\Slim::getInstance();
+$db = new dbHelper();
 
 /**
  * Database Helper Function templates
@@ -18,15 +19,22 @@ delete(table name, where clause as array)
 
 session_start();
 
-$app->put('/logout', function() use ($app) {
-    $user = $_SESSION['name'];
-    if (session_destroy()) {
-        $response['status'] = "success";
-        $response['message'] =  $user . " loggged out";
+$app->get('/orders', function() use ($app) {
+    $type = $_REQUEST['type'];
+    global $db;
+    if($type == "1"){
+        $startdate =  date('Y-m-d G:i:s',mktime(0,0,0,date("m")-1,date("d"),date("Y")));
+        $enddate =  date('Y-m-d G:i:s');
+    }else if($type =="2"){
+         $startdate =  date('Y-m-d G:i:s',mktime(0,0,0,date("m"),date("d")-7,date("Y")));
+        $enddate =  date('Y-m-d G:i:s');
     }else {
-        $response['status'] = "error";
-        $response['message'] = 'Logout failed';
+        $startdate =  date('Y-m-d G:i:s',mktime(0,0,0,date("m"),date("d")-1,date("Y")));
+        $enddate =  date('Y-m-d G:i:s');
     }
+    $condition = " WHERE date BETWEEN '" . $startdate ."' and '". $enddate ."'";
+    $response = $db->countTable("orders", $condition);   
+    $response['$condition']=$condition ;
     echoResponse(200, $response);
 });
 

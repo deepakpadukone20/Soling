@@ -10,11 +10,12 @@ app.controller('saleCtrl', function ($scope,$location,$q, Data,$modalInstance) {
 
         $q.all([
         Data.get('items'),
-        Data.get('suppliers')
+        Data.get('vehicles'),
+        Data.get('customers')
         ]).then(function(results) {
             $scope.items = results[0].data;
             $scope.vehicles = results[1].data;
-            $scope.customers = results[1].data;
+            $scope.customers = results[2].data;
         });
     }
     $scope.ok = function(){

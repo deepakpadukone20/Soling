@@ -15,14 +15,9 @@
 
 <!-- Our Website Content Goes Here -->
 <div ng-include='"templates/header.html"'></div>
-  <div id="wrap" class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title">{{title || "Welcome"}}</h3>
-    </div>
-    <div class="panel-body">
-      <div ng-view > </div>
-    </div>
-  </div>
+  
+        <div ng-view > </div>
+
 <div ng-include='"templates/footer.html"'></div>
 
 <script src="tp/js/jquery.min.js"></script>
@@ -32,6 +27,7 @@
 <script src="tp/js/angular-animate.min.js"></script>
 <script src="tp/js/toaster.js"></script>
 <script src="tp/js/underscore-min.js"></script>
+<script src="tp/js/chart.min.js"></script>
 
 <script src="tp/js/bootstrap.min.js"></script>
 <script src="tp/js/bootstrap-table.min.js"></script>
@@ -41,6 +37,7 @@
 <script src="tp/js/ui-bootstrap-tpls-0.14.1.js"></script>
 <script src="js/app.js"></script>
 <script src="js/loginCtrl.js"></script>
+<script src="js/homeCtrl.js"></script>
 <script src="js/logoutCtrl.js"></script>
 <script src="js/SupplierCtrl.js"></script>
 <script src="js/customersCtrl.js"></script>
@@ -48,6 +45,7 @@
 <script src="js/saleCtrl.js"></script>
 <script src="js/itemsCtrl.js"></script>
 <script src="js/vehiclesCtrl.js"></script>
+<script src="js/usersCtrl.js"></script>
 <script src="js/data.js"></script>
 <script src="js/driversCtrl.js"></script>
 </body>

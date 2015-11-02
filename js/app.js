@@ -26,13 +26,25 @@ app.config(['$routeProvider',
         templateUrl: 'partials/vehicles.html',
         controller: 'vehiclesCtrl'
     })
+    .when('/users', {
+        title: 'Users',
+        templateUrl: 'partials/users.html',
+        controller: 'usersCtrl'
+    })
     .when('/customers', {
         title: 'customers',
         templateUrl: 'partials/customers.html',
         controller: 'customersCtrl'
     })
+    .when('/home', {
+        title: 'Home',
+        templateUrl: 'partials/home.html',
+        controller: 'homeCtrl'
+    })
     .otherwise({
-      redirectTo: '/'
+      redirectTo: '/',
+      templateUrl: 'partials/index.html',
+        controller: 'loginCtrl'
     });;
 }]);
      

@@ -39,7 +39,7 @@ app.controller('loginCtrl', function ($scope,$location, $http, Data ,$rootScope,
                 $rootScope.uid = results.id;
                 $rootScope.username = results.name;
                 $modalInstance.close();
-                $location.path('/');
+                $location.path('/home');
             }
         });
     };

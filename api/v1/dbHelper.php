@@ -70,6 +70,21 @@ class dbHelper {
         }
         return $response;
     }
+    function countTable($table,$condition){
+        try {
+            $a = array();
+            $w = "";
+            $stmt =  $this->db->prepare("SELECT * from $table $condition" );
+            $stmt->execute($a);
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $response["status"] = "success";
+            $response["data"] = count($rows);
+        } catch (Exception $e) {
+            $response["status"] = "error";
+            $response["data"] = -1;
+        }
+        return $response;
+    }
     function insert($table, $columnsArray, $requiredColumnsArray) {
         $this->verifyRequiredParams($columnsArray, $requiredColumnsArray);
         

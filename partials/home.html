@@ -1,0 +1,35 @@
+<div class="col-md-6">
+
+<div id="wrap" class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Sales this {{title}}</h3>
+    </div>
+    <div class="panel-body">
+        <canvas id="saleChart" class="col-md-12"></canvas>
+    </div>
+    <div class="panel-footer">
+    	 <button class="btn btn-primary" type="button" ng-click="changeGraph(2)">Month</button>
+         <button class="btn btn-primary" type="button" ng-click="changeGraph(1)">Week</button>
+    </div>
+  </div>
+</div>
+<div class="col-md-4">
+<div id="wrap" class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-shopping-cart fa-2x">&nbsp;</i> Orders</h3>
+    </div>
+    <div class="panel-body text-center">
+    <h5>
+    	Total orders today : 
+    </h5>
+    <h1>
+    	{{orderCount || 0}}
+    </h1>
+    </div>
+    <div class="panel-footer">
+    	 <button class="btn btn-primary" type="button" ng-click="getOrderCount(1)">Month</button>
+         <button class="btn btn-primary" type="button" ng-click="getOrderCount(2)">Week</button>
+         <button class="btn btn-primary" type="button" ng-click="getOrderCount(3)">Day</button>
+    </div>
+  </div>
+</div>
