@@ -62,7 +62,6 @@ app.controller('ModalCtrl',function($scope, $uibModal, $log){
       templateUrl: 'partials/'+url+'.html',
       controller: url+'Ctrl',
       size: size ||'md',
-      backdrop :false,
       resolve: {
         items: function () {
           return $scope.items;

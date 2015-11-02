@@ -40,12 +40,13 @@ $app->post('/login', function() use ($app) {
         $response['id'] = $user['id'];
         $response['email'] = $user['email'];
         $response['createdAt'] = $user['date'];
-        if (!isset($_SESSION)) {
-            session_start();
-        }
+        session_start();
+        
         $_SESSION['id'] = $user['id'];
         $_SESSION['email'] = $email;
         $_SESSION['name'] = $user['name'];
+         //   echoResponse(200, $_SESSION);
+
         } else {
             $response['status'] = "error";
             $response['message'] = 'Login failed. Incorrect credentials';

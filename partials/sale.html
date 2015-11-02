@@ -1,21 +1,24 @@
 <div class="modal-header">
             <h3 class="modal-title">Sale</h3>
         </div>		
-<div class="modal-body">
+<form class="modal-body" name="saleForm">
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
 
 						<label for="partyName">Party Name:</label>
-						<select class="form-control" id="partyName">
-							<option>Ravindra</option>
-							<option>John</option>
+						<select class="form-control" id="partyName" name="partyName" ng-required="true">
+							<option selected disabled >Choose Party</option>
+							<option ng-repeat="cust in customers" value="{{cust.id}}">{{cust.name}}</option>
 						</select>
+					    <p ng-show="saleForm.partyName.$invalid" class="help-block">Party name is required.</p>
+
 					</div>
 					<div class="form-group">
 
 						<label for="itemName">Item </label>
 						<select class="form-control" id="itemName">
+							<option selected disabled >Choose Party</option>
 							<option ng-repeat="item in items" value="{{item.id}}">{{item.name}}</option>
 						</select>
 					</div>
@@ -23,7 +26,7 @@
 
 						<label for="vehicleType">Vehicle Type:</label>
 						<select class="form-control" id="vehicleType">
-							<option>1</option>
+							<option selected disabled >Choose Party</option>
 							<option>2</option>
 						</select>
 					</div>
@@ -65,10 +68,10 @@
 					
 				</div>
 			</div>
-		</div>
+		</form>
 		
 </div>
 <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button ng-disabled="saleForm.$invalid" class="btn btn-primary" type="button" ng-click="ok()">OK</button>
             <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>

@@ -48,17 +48,9 @@ app.controller('loginCtrl', function ($scope,$location, $http, Data ,$rootScope,
         Data.post('signUp', user).then(function (results) {
             Data.toast(results);
             if (results.status == "success") {
-                $location.path('dashboard');
+                $scope.setSetSignupMode();
             }
         });
     };
-    $scope.logout = function () {
-        Data.get('logout').then(function (results) {
-            if(results.status == "success"){
-                $rootScope.uid = "0";
-                $rootScope.username = "";
-                
-            }
-        });
-    }
+    
 });

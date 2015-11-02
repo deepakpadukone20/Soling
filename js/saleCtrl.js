@@ -14,19 +14,22 @@ app.controller('saleCtrl', function ($scope,$location,$q, Data,$modalInstance) {
         ]).then(function(results) {
             $scope.items = results[0].data;
             $scope.vehicles = results[1].data;
+            $scope.customers = results[1].data;
         });
     }
     $scope.ok = function(){
        
         var transactdata = {
             date:$scope.transact.date|| "",
-            time:$scope.transact.time || "",
             unitType:$scope.transact.unitType ,
-            noOfUnits:$scope.transact.noOfUnits || 0,
+            quantity:$scope.transact.noOfUnits || 0,
             amount:$scope.transact.amount ||0,
-            supplierId:$scope.transact.supplierId || -1
+            custId:$scope.transact.custId || -1,
+            itemIds:$scope.transact.selectedItems||[],
+            driverId:$scope.transact.driverId ||-1,
+            vehicleId:$scope.transact.vehicleId ||-1
         }
-        Data.post('transaction',transactdata).then(function () {
+        Data.post('transaction?type=sale',transactdata).then(function () {
             
         });
     
