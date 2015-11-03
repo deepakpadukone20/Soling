@@ -2,26 +2,31 @@
             <h3 class="modal-title"><i class="glyphicon glyphicon-lock"></i>Sign {{mode}}</h3>
         </div>      
 <div class="modal-body">    
-<form class="form-signin">
+<form class="form-signin" name="userForm" novalidate>
         <h2 class="form-signin-heading">
         Please sign {{mode}}</h2>
-        <div ng-show="isSignUpMode"> 
+        <div ng-if="isSignUpMode"> 
         <label for="inputName" class="sr-only">
         Name </label>
-        <input ng-model="user.name" type="text" id="inputName" class="form-control" placeholder="Name" required="" autofocus="">
+        <input ng-model="user.name" type="text" name="inputName"  class="form-control" placeholder="Name" required="" autofocus="">
         </div>
         <label for="inputEmail" class="sr-only">
         Email address</label>
-        <input ng-model="user.email" type="text" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+        <input ng-model="user.email" type="email" name="inputEmail" class="form-control" placeholder="Email address" ng-required="true" autofocus="">
+        <p ng-show="userForm.inputEmail.$invalid && !userForm.inputEmail.$pristine && !userForm.inputEmail.$error.required" class="help-block">Enter a valid email.</p>
+        <p ng-show="!userForm.inputEmail.$pristine && userForm.inputEmail.$error.required" class="help-block">Email cannot be empty.</p>
         <label for="inputPassword" class="sr-only">
         Password</label>
-        <input ng-model="user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-        <div ng-show="isSignUpMode"> 
-            <label for="inputPasswordCnf" class="sr-only">
+        <input ng-model="user.password" type="password" name="inputPassword" class="form-control" placeholder="Password" ng-minlength="5" ng-required="true" >
+        <p ng-show="userForm.inputPassword.$error.minlength" class="help-block">Password is too short.</p>
+        <p ng-show="!userForm.inputEmail.$pristine && userForm.inputPassword.$error.required" class="help-block">Password cannot be empty.</p>
+        <div ng-if="isSignUpMode"> 
+        <label for="inputPasswordCnf" class="sr-only">
             Confirm Password</label>
-            <input ng-model="user.passwordcnf" type="password" id="inputPasswordCnf" class="form-control"  placeholder="Password" required="">
-            </div>
-        <div class="checkbox" ng-hide="isSignUpMode">
+        <input ng-model="user.passwordcnf" type="password" name="inputPasswordCnf" class="form-control"  placeholder="Password" required="">
+        <p ng-show="!userForm.inputEmail.$pristine && userForm.inputPassword.$viewValue !== userForm.inputPasswordCnf.$viewValue" class="help-block">Confirm password is not matching</p>
+        </div>
+        <div class="checkbox" ng-if="!1">
             <label>
                 <input type="checkbox" value="remember-me">
             Remember me</label>
@@ -32,6 +37,6 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()"><i class="glyphicon glyphicon-log-in"></i>{{signUpMode}}</button>
+    <button class="btn btn-primary" ng-disabled="userForm.$invalid" type="button" ng-click="ok()"><i class="glyphicon glyphicon-log-in"></i>{{signUpMode}}</button>
     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
 </div>

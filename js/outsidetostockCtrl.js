@@ -1,8 +1,11 @@
-app.controller('outsidetostockCtrl', function ($scope,$location, $http, Data,$modalInstance) {
+app.controller('outsidetostockCtrl', function ($scope,$rootScope,$location, $http, Data,$modalInstance) {
     
     $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
-     };
+    if (!!$rootScope.uid) {
+        $location.path('/home');
+        }
+    };
 
     $scope.init = function(){
         $scope.transact ={};

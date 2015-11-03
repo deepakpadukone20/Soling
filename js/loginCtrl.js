@@ -5,6 +5,11 @@ app.controller('loginCtrl', function ($scope,$location, $http, Data ,$rootScope,
     $scope.signUpMode = "Login";
     $scope.mode = "in";
     $scope.signInMsg = "Sign Up Now!";
+    if (!!$rootScope.uid) {
+        $location.path('/home');
+    } else {
+        $location.path('/');
+    }
     $scope.setSetSignupMode = function(){
         $scope.isSignUpMode = !$scope.isSignUpMode;
         if($scope.isSignUpMode){
@@ -19,6 +24,8 @@ app.controller('loginCtrl', function ($scope,$location, $http, Data ,$rootScope,
     }
     $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
+if (!!$rootScope.uid) {
+        $location.path('/home');}
      };
     $scope.ok = function(){
         var user = {

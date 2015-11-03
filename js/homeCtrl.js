@@ -1,9 +1,9 @@
 app.controller('homeCtrl', function ($scope,Data) {
 	Chart.defaults.global.responsive = true;
-	
+		$scope.title = "week"
 		$scope.ctx = document.getElementById("saleChart").getContext("2d");
 		var data = {};
-		data.data1 = {
+		data.data2 = {
 		    labels: ["Mon", "Tue", "Wed", "Thr", "Fri", "Sat", "Sun"],
 		    datasets: [
 		        {
@@ -19,7 +19,7 @@ app.controller('homeCtrl', function ($scope,Data) {
 		        }
 		    ]
 		};
-		 data.data2 = {
+		 data.data1 = {
 		    labels: ["Week1", "Week2", "Week3", "Week4"],
 		    datasets: [
 		        {
@@ -37,17 +37,23 @@ app.controller('homeCtrl', function ($scope,Data) {
 		};
 		$scope.myLineChart = new Chart($scope.ctx).Line(data["data1"], {scaleShowGridLines :false,bezierCurve : true});
 
-		$scope.changeGraph = function(type){
-			$scope.title = type == 1 ? "week" : "month"
+		$scope.changeGraph = function(){
+			$scope.title = $scope.type == 1 ? "week" : "month"
+			var type = $scope.type > 2 ? 2:1;
 			$scope.myLineChart.destroy();
 			$scope.myLineChart = new Chart($scope.ctx).Line(data["data"+type], {scaleShowGridLines :false,bezierCurve : true});
 		};
-		$scope.getOrderCount = function(type){
-			Data.get('orders?type='+type).then(function (results) {
+		$scope.change = function(type){
+			$scope.type = type;
+			$scope.changeGraph();
+			$scope.getOrderCount();
+		}
+		$scope.getOrderCount = function(){
+			Data.get('orders?type='+$scope.type).then(function (results) {
             if(results.status == "success"){
                $scope.orderCount = results.data;
             }
         });
 		}
-		$scope.getOrderCount(3);
+		$scope.change(3);
 });

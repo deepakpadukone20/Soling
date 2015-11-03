@@ -1,7 +1,10 @@
-app.controller('saleCtrl', function ($scope,$location,$q, Data,$modalInstance) {
+app.controller('saleCtrl', function ($scope,$rootScope,$location,$q, Data,$modalInstance) {
     
     $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
+    if (!!$rootScope.uid) {
+        $location.path('/home');
+        }
      };
 
     $scope.init = function(){

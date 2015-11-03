@@ -2,14 +2,15 @@
 
 <div id="wrap" class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Sales this {{title}}</h3>
+      <h3 class="panel-title"><i class="fa fa-area-chart fa-2x"></i>
+Sales this {{title}}</h3>
     </div>
     <div class="panel-body">
         <canvas id="saleChart" class="col-md-12"></canvas>
     </div>
     <div class="panel-footer">
-    	 <button class="btn btn-primary" type="button" ng-click="changeGraph(2)">Month</button>
-         <button class="btn btn-primary" type="button" ng-click="changeGraph(1)">Week</button>
+    	 <button class="btn btn-primary" type="button" ng-class="{active: type==1}"ng-click="change(1)">Month</button>
+         <button class="btn btn-primary" type="button" ng-class="{active: type >1}" ng-click="change(2)">Week</button>
     </div>
   </div>
 </div>
@@ -27,9 +28,9 @@
     </h1>
     </div>
     <div class="panel-footer">
-    	 <button class="btn btn-primary" type="button" ng-click="getOrderCount(1)">Month</button>
-         <button class="btn btn-primary" type="button" ng-click="getOrderCount(2)">Week</button>
-         <button class="btn btn-primary" type="button" ng-click="getOrderCount(3)">Day</button>
+    	   <button class="btn btn-primary" ng-class="{active: type==1}" type="button" ng-click="change(1)">Month</button>
+         <button class="btn btn-primary" ng-class="{active: type==2}" type="button" ng-click="change(2)">Week</button>
+         <button class="btn btn-primary" ng-class="{active: type==3}" type="button" ng-click="change(3)">Day</button>
     </div>
   </div>
 </div>

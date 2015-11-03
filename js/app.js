@@ -9,60 +9,83 @@ app.config(['$routeProvider',
     .when('/suppliers', {
       title: 'Suppliers',
       templateUrl: 'partials/suppliers.html',
-      controller: 'suppliersCtrl'
+      controller: 'suppliersCtrl',
+      data: {
+        requireLogin: true
+      }
+
     })
     .when('/items', {
       title: 'Items',
       templateUrl: 'partials/items.html',
-      controller: 'itemsCtrl'
+      controller: 'itemsCtrl',
+      data: {
+        requireLogin: true
+      }
     })
     .when('/drivers', {
         title: 'Drivers',
         templateUrl: 'partials/drivers.html',
-        controller: 'driversCtrl'
+        controller: 'driversCtrl',
+      data: {
+        requireLogin: true
+      }
     })
     .when('/vehicles', {
         title: 'Vehicles',
         templateUrl: 'partials/vehicles.html',
-        controller: 'vehiclesCtrl'
+        controller: 'vehiclesCtrl',
+      data: {
+        requireLogin: true
+      }
     })
     .when('/users', {
         title: 'Users',
         templateUrl: 'partials/users.html',
-        controller: 'usersCtrl'
+        controller: 'usersCtrl',
+      data: {
+        requireLogin: true
+      }
     })
     .when('/customers', {
         title: 'customers',
         templateUrl: 'partials/customers.html',
-        controller: 'customersCtrl'
+        controller: 'customersCtrl',
+      data: {
+        requireLogin: true
+      }
     })
     .when('/home', {
         title: 'Home',
         templateUrl: 'partials/home.html',
-        controller: 'homeCtrl'
+        controller: 'homeCtrl',
+      data: {
+        requireLogin: true
+      }
     })
     .otherwise({
       redirectTo: '/',
       templateUrl: 'partials/index.html',
         controller: 'loginCtrl'
-    });;
+    });
+  
 }]);
      
 
 app.controller('PageCtrl', function  ($rootScope, $location, $http ) {
   
 });
+app.run(function ($rootScope,$location) {
 
-app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $controller) {
+  $rootScope.$on('$routeChangeStart', function (event, toState, toParams) {
+    var requireLogin = toState.data.requireLogin;
 
-   
-    $controller('loginCtrl', {$scope: $scope,$modalInstance:$modalInstance});
-  
-     
-  
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+    if (requireLogin && typeof $rootScope.uid === 'undefined') {
+      event.preventDefault();
+        $location.path('/')
+    }
+  });
+
 });
 app.controller('ModalCtrl',function($scope, $uibModal, $log){
 
