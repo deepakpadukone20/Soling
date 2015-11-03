@@ -66,7 +66,6 @@ app.config(['$routeProvider',
     .otherwise({
       redirectTo: '/',
       templateUrl: 'partials/index.html',
-        controller: 'loginCtrl'
     });
   
 }]);
@@ -78,7 +77,7 @@ app.controller('PageCtrl', function  ($rootScope, $location, $http ) {
 app.run(function ($rootScope,$location) {
 
   $rootScope.$on('$routeChangeStart', function (event, toState, toParams) {
-    var requireLogin = toState.data.requireLogin;
+    var requireLogin = toState.data && toState.data.requireLogin;
 
     if (requireLogin && typeof $rootScope.uid === 'undefined') {
       event.preventDefault();
@@ -97,6 +96,8 @@ app.controller('ModalCtrl',function($scope, $uibModal, $log){
       templateUrl: 'partials/'+url+'.html',
       controller: url+'Ctrl',
       size: size ||'md',
+      openedClass: 'login',
+      backdrop:false,
       resolve: {
         items: function () {
           return $scope.items;

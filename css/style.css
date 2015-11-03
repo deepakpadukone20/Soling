@@ -67,3 +67,90 @@ i.glyphicon{
 .help-block{
     color: red;
 }
+
+.d {
+width: 100%;
+height:100%;
+color: rgba(255,255,255,1);
+-o-text-overflow: clip;
+text-overflow: clip;
+background: -webkit-linear-gradient(-250.01689347810003deg, rgba(255,0,102,0) 20%, rgba(255,0,102,0.0980392) 20%, rgba(255,0,102,0.0980392) 40%, rgba(255,0,102,0.2) 40%, rgba(255,0,102,0.2) 60%, rgba(255,0,102,0.4) 60%, rgba(255,0,102,0.4) 80%, rgba(255,0,102,0.6) 80%), -webkit-linear-gradient(-26.565051177077976deg, rgba(255,0,102,0) 20%, rgba(255,0,102,0.0980392) 20%, rgba(255,0,102,0.0980392) 40%, rgba(255,0,102,0.2) 40%, rgba(255,0,102,0.2) 60%, rgba(255,0,102,0.4) 60%, rgba(255,0,102,0.4) 80%, rgba(255,0,102,0.6) 80%), rgb(255, 204, 0);
+background: -moz-linear-gradient(340.01689347810003deg, rgba(255,0,102,0) 20%, rgba(255,0,102,0.0980392) 20%, rgba(255,0,102,0.0980392) 40%, rgba(255,0,102,0.2) 40%, rgba(255,0,102,0.2) 60%, rgba(255,0,102,0.4) 60%, rgba(255,0,102,0.4) 80%, rgba(255,0,102,0.6) 80%), -moz-linear-gradient(116.56505117707798deg, rgba(255,0,102,0) 20%, rgba(255,0,102,0.0980392) 20%, rgba(255,0,102,0.0980392) 40%, rgba(255,0,102,0.2) 40%, rgba(255,0,102,0.2) 60%, rgba(255,0,102,0.4) 60%, rgba(255,0,102,0.4) 80%, rgba(255,0,102,0.6) 80%), rgb(255, 204, 0);
+background: linear-gradient(340.01689347810003deg, rgba(255,0,102,0) 20%, rgba(255,0,102,0.0980392) 20%, rgba(255,0,102,0.0980392) 40%, rgba(255,0,102,0.2) 40%, rgba(255,0,102,0.2) 60%, rgba(255,0,102,0.4) 60%, rgba(255,0,102,0.4) 80%, rgba(255,0,102,0.6) 80%), linear-gradient(116.56505117707798deg, rgba(255,0,102,0) 20%, rgba(255,0,102,0.0980392) 20%, rgba(255,0,102,0.0980392) 40%, rgba(255,0,102,0.2) 40%, rgba(255,0,102,0.2) 60%, rgba(255,0,102,0.4) 60%, rgba(255,0,102,0.4) 80%, rgba(255,0,102,0.6) 80%), rgb(255, 204, 0);
+background-position: auto auto;
+-webkit-background-origin: padding-box;
+background-origin: padding-box;
+-webkit-background-clip: border-box;
+background-clip: border-box;
+-webkit-background-size: 100% 100%;
+background-size: 100% 100%;
+-webkit-box-shadow: none;
+box-shadow: none;
+text-shadow: none;
+-webkit-transition: none;
+-moz-transition: none;
+-o-transition: none;
+transition: none;
+-webkit-transform: none;
+transform: none;
+-webkit-transform-origin: 50% 50% 0;
+transform-origin: 50% 50% 0;
+position: fixed;
+}
+.modal-body a{
+    margin-top: 10px;
+    color: #fff;
+}
+.modal-body a:hover,.modal-body a:focus,{
+    color: #efe;
+}
+.modal-content {
+    display: block;
+-webkit-box-sizing: content-box;
+-moz-box-sizing: content-box;
+box-sizing: content-box;
+float: none;
+z-index: auto;
+
+position: static;
+cursor: default;
+opacity: 1;
+margin: 25% auto 40%;
+padding: 19px;
+overflow: hidden;
+border: none;
+-webkit-border-radius: 0;
+border-radius: 0;
+color: rgba(255,255,255,1);
+text-align: center;
+-o-text-overflow: ellipsis;
+text-overflow: ellipsis;
+background: -webkit-linear-gradient(-90deg, rgba(119,127,107,0.78) 0, rgba(0,0,0,0.62) 100%);
+background: -moz-linear-gradient(180deg, rgba(119,127,107,0.78) 0, rgba(0,0,0,0.62) 100%);
+background: linear-gradient(180deg, rgba(119,127,107,0.78) 0, rgba(0,0,0,0.62) 100%);
+background-position: 50% 50%;
+-webkit-background-origin: padding-box;
+background-origin: padding-box;
+-webkit-background-clip: border-box;
+background-clip: border-box;
+-webkit-background-size: auto auto;
+background-size: auto auto;
+-webkit-box-shadow: 4px 7px 9px -2px rgba(0,0,0,0.52) ;
+box-shadow: 4px 7px 9px -2px rgba(0,0,0,0.52) ;
+text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+-webkit-transition: none;
+-moz-transition: none;
+-o-transition: none;
+transition: none;
+-webkit-transform: none;
+transform: none;
+-webkit-transform-origin: 50% 50% 0;
+transform-origin: 50% 50% 0;
+}
+.panel-warning>.panel-heading {
+    background:#FFB014;
+    color: #455555;
+}
+.form-group {
+    text-align: left;
+}

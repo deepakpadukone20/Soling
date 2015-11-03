@@ -24,8 +24,7 @@ app.controller('loginCtrl', function ($scope,$location, $http, Data ,$rootScope,
     }
     $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
-if (!!$rootScope.uid) {
-        $location.path('/home');}
+
      };
     $scope.ok = function(){
         var user = {

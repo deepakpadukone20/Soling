@@ -31,12 +31,13 @@
                 <input type="checkbox" value="remember-me">
             Remember me</label>
         </div>
+        <div style="margin-top:10px">
         <a href="#" ng-click="setSetSignupMode();">
            {{signInMsg}}
-        </a>
+        </a></div>
     </form>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-disabled="userForm.$invalid" type="button" ng-click="ok()"><i class="glyphicon glyphicon-log-in"></i>{{signUpMode}}</button>
+    <button class="btn btn-default" ng-disabled="userForm.$invalid" type="button" ng-click="ok()"><i class="glyphicon glyphicon-log-in"></i>{{signUpMode}}</button>
     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
 </div>

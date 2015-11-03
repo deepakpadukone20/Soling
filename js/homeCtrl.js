@@ -1,6 +1,6 @@
 app.controller('homeCtrl', function ($scope,Data) {
 	Chart.defaults.global.responsive = true;
-		$scope.title = "week"
+		$scope.title = "month"
 		$scope.ctx = document.getElementById("saleChart").getContext("2d");
 		var data = {};
 		data.data2 = {
@@ -8,9 +8,9 @@ app.controller('homeCtrl', function ($scope,Data) {
 		    datasets: [
 		        {
 		            label: "No of Sales",
-		            fillColor: "rgba(220,220,220,0.2)",
-		            strokeColor: "rgba(220,220,220,1)",
-		            pointColor: "rgba(220,220,220,1)",
+		            fillColor: "rgba(249,172,12,0.2)",
+		            strokeColor: "rgba(249,172,12,1)",
+		            pointColor: "rgba(249,172,12,1)",
 		            pointStrokeColor: "#fff",
 		            pointHighlightFill: "#fff",
 		            pointHighlightStroke: "rgba(220,220,220,1)",
@@ -24,9 +24,9 @@ app.controller('homeCtrl', function ($scope,Data) {
 		    datasets: [
 		        {
 		            label: "No of Sales",
-		            fillColor: "rgba(220,220,220,0.2)",
-		            strokeColor: "rgba(220,220,220,1)",
-		            pointColor: "rgba(220,220,220,1)",
+		            fillColor: "rgba(151,3,216,0.2)",
+		            strokeColor: "rgba(151,3,216,1)",
+		            pointColor: "rgba(151,3,216,1)",
 		            pointStrokeColor: "#fff",
 		            pointHighlightFill: "#fff",
 		            pointHighlightStroke: "rgba(220,220,220,1)",
@@ -35,13 +35,13 @@ app.controller('homeCtrl', function ($scope,Data) {
 		        }
 		    ]
 		};
-		$scope.myLineChart = new Chart($scope.ctx).Line(data["data1"], {scaleShowGridLines :false,bezierCurve : true});
+		$scope.myLineChart = new Chart($scope.ctx).Line(data["data1"], {scaleShowGridLines :false,bezierCurve : false});
 
 		$scope.changeGraph = function(){
-			$scope.title = $scope.type == 1 ? "week" : "month"
-			var type = $scope.type > 2 ? 2:1;
+			$scope.title = $scope.type == 1 ? "month" : "week"
+			var type = $scope.type >= 2 ? 2:1;
 			$scope.myLineChart.destroy();
-			$scope.myLineChart = new Chart($scope.ctx).Line(data["data"+type], {scaleShowGridLines :false,bezierCurve : true});
+			$scope.myLineChart = new Chart($scope.ctx).Line(data["data"+type], {scaleShowGridLines :false,bezierCurve : false});
 		};
 		$scope.change = function(type){
 			$scope.type = type;
